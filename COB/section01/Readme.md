@@ -1,6 +1,6 @@
 # section01 contents 
-1. basic html,css<br>+ PR) twittler 목업 페이지
-2. basic linux
+1. basic html,css<br>+ PR) twittler 목업 페이지.
+2. basic linux<br>+ PR) 계산기 구현하기 - 휴먼에러 처리 구현.
 3. basic git
 4. basic java lang
 5. basic OOP
