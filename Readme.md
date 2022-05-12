@@ -14,3 +14,4 @@
   3. 네트워킹 -> REST API, 소켓 프로그래밍, DOCKER+SPRING 
   4. 데이터베이스 -> JDBC, oracle, sql
   5. linux -> 리눅스 커널의 구조와 원리 정독
++ 8월 이전까지 이론 부분 반드시 완성해야함
