@@ -1,1 +1,8 @@
-1. section1 = 기초 html/css , java 기초
+### 공부 우선 순위
++ 섹션 1
+  1. 기본 자바언어
+  2. oop 기초
+  3. html,css 기초
++ 전체 기간 공부 목록
+  1. OOP -> head first oop, 이펙티브 자바, 디자인패턴 정독
+  2. linux -> 리눅스 커널의 구조와 원리 정독
