@@ -1,0 +1,2965 @@
+{
+	"info": {
+		"_postman_id": "f6d37922-529b-4d4a-a7c5-32961d398a8f",
+		"name": "server_member_profile_post_answer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1.member",
+			"item": [
+				{
+					"name": "createMember",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/**\r",
+									"요청 {\r",
+									"    \r",
+									"    \"id\":\"Id22\", - 아이디\r",
+									"    \"password\":\"password\" - 비밀번호   \r",
+									"    \r",
+									"}\r",
+									"\r",
+									"비밀번호는 암호화되므로 운영자도 알수가 없다\r",
+									"\r",
+									"\r",
+									"응답{\r",
+									"    \"member_id\": 3,  - 데이터베이스에 저장된 회원 고유 번호, 다른 요청 생성할때도 사용 됩니다.\r",
+									"    \"sign_in_date\": \"2022-09-02T15:52:13.386424+09:00\", - 가입일\r",
+									"    \"nick_name\": \"nickname5922\", - 닉네임\r",
+									"    \"id\": \"Id22\", - 회원 아이디\r",
+									"    \"roles\": \"ROLE_USER\", - 권한 \r",
+									"    \"profile\": { - 자동으로 프로필 생성\r",
+									"        \"profile_id\": 3, - 데이터베이스에 저장된 프로필 고유 번호, 프로필 확인 요청 할때 사용 가능합니다.\r",
+									"        \"stub_reputation\": 0, - 명성 점수는 기본값 0\r",
+									"        \"stub_reached\": 0, - reached 기본값 0\r",
+									"        \"about\": \"hello world\", - 기본 about \r",
+									"        \"sign_in_date\": \"2022-09-02T15:52:13.785025+09:00\", - 가입일\r",
+									"        \"last_visit\": \"2022-09-02T15:52:13.785041+09:00\", - 최종 방문일 : 갱신 기능 미구현\r",
+									"        \"location\": \"location\", -기본 로케이션\r",
+									"        \"displayname\": \"nickname5922\", - 닉네임 위와 동일\r",
+									"        \"answers\": 100 - 기본값 100 : 0으로 변경 예정\r",
+									"    },\r",
+									"    \"post_votes\": [], - 질문글 추천 정보\r",
+									"    \"password\": \"$2a$10$ekg8XKaQuzPult/bWlZPIuycFXyPk4nXjnw3w5Rgxbbr1F2u/8yd.\", - 패스워드 : 삭제 예정\r",
+									"    \"role_list\": [\r",
+									"        \"ROLE_USER\" - 권한 위와 같음\r",
+									"    ]\r",
+									"}\r",
+									"\r",
+									"\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOjEsImV4cCI6MTY1ODk4MTQ0NSwidXNlcm5hbWUiOiJ0ZXN0In0.Rw1ppfE2pMJufQDnmMdtxyyLOOvUENutDrUwXJxTp5RIIEWIn1nA1Xu6RcP2FTMd1_LAME5bxHiZMsBsDtHj8Q",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"id\":\"Id223\",\r\n    \"password\":\"password\"   \r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/createMember",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"createMember"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "11",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMember",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/**\r",
+									" * 요청 http://3.39.180.45:56178/DBtest/findMember/{memberId}\r",
+									" * memberId - 데이터베이스에 저장된 회원 번호 필요\r",
+									" * \r",
+									" * 응답\r",
+									" * \r",
+									" * \r",
+									"    \"member_id\": 2, - 데이터베이스 멤버 번호\r",
+									"    \"sign_in_date\": \"2022-09-02T06:41:00.584388Z\", - 가입일\r",
+									"    \"nick_name\": \"nickname6283\", - 닉네임\r",
+									"    \"id\": \"Iddddddd1\", - 아이디\r",
+									"    \"roles\": \"ROLE_USER\", - 권한 \r",
+									"    \"profile\": { - 프로필 정보\r",
+									"        \"profile_id\": 2, - 프로필 아이디\r",
+									"        \"stub_reputation\": 0, - 더미데이터\r",
+									"        \"stub_reached\": 0, - 더미데이터\r",
+									"        \"about\": \"hello world\", - 기본값\r",
+									"        \"sign_in_date\": \"2022-09-02T06:41:01.595978Z\", - 가입일\r",
+									"        \"last_visit\": \"2022-09-02T06:41:01.595996Z\", - 최종방문 : 구현 예정\r",
+									"        \"location\": \"location\", - 기본값\r",
+									"        \"displayname\": \"nickname6283\", - 닉네임\r",
+									"        \"answers\": 100 - 0으로 변경 예정\r",
+									"    },\r",
+									"    \"post_votes\": [], 추천 정보 - 현재 없음\r",
+									"    \"password\": \"$2a$10$PqqwKbHTkvjUgQ80Ip/7F.7n1xj3mvVEUwnqjp2FyYBi6mkMXvUVK\", - 삭제 예정\r",
+									"    \"role_list\": [\r",
+									"        \"ROLE_USER\" - 권한\r",
+									"    ]\r",
+									"}\r",
+									"    1번 유저 - deleted member - 질문글 등 삭제 발생시 데이터 유지를 위한 더미 유저. 해당 유저에 관련된 데이터 접근시 에러 발생 가능\r",
+									" * \r",
+									" * {\r",
+									"    \"member_id\": 1,\r",
+									"    \"sign_in_date\": \"2022-09-02T06:40:57.692082Z\",\r",
+									"    \"nick_name\": \"deleted\",\r",
+									"    \"id\": \"deleted\",\r",
+									"    \"roles\": \"ROLE_USER\",\r",
+									"    \"profile\": {\r",
+									"        \"profile_id\": 1,\r",
+									"        \"stub_reputation\": 0,\r",
+									"        \"stub_reached\": 0,\r",
+									"        \"about\": \"hello world\",\r",
+									"        \"sign_in_date\": \"2022-09-02T06:40:59.092309Z\",\r",
+									"        \"last_visit\": \"2022-09-02T06:40:59.092322Z\",\r",
+									"        \"location\": \"location\",\r",
+									"        \"displayname\": \"deleted\",\r",
+									"        \"answers\": 100\r",
+									"    },\r",
+									"    \"post_votes\": [],\r",
+									"    \"password\": \"$2a$10$7fO9iZxJzlVLULocJ03gMetx4QN9ksQKQ3ZTXXrL3jMViIwiJrUC2\",\r",
+									"    \"role_list\": [\r",
+									"        \"ROLE_USER\"\r",
+									"    ]\r",
+									"}\r",
+									"\r",
+									"잘못된 파라미터 입력시\r",
+									"        not found\r",
+									" * \r",
+									" * \r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjIzODQ0MzMsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.zB6hanWOhf_Cw8oy2S1zonG3yAt8Nuj0VVenawLqYEf0hCrgSSmfRttNLdAm-UJHi8_X8Lby09q1K4E3tnWCtQ",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/findMember/2",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"findMember",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePassword",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"\r",
+									"요청 \r",
+									"http://3.39.180.45:56178/DBtest/updatePassword?member_id={memberId}\r",
+									"데이터베이스에 저장된 memberId 번호를 사용\r",
+									"\r",
+									"정상 응답 \r",
+									"passwored changed\r",
+									"\r",
+									"오류 응답\r",
+									"passwored not changed\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0NzIwNTgsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.cnMm9bIRNbsE2IZ3yyqbuSA6fC-UPmS4Gw77lfysW9X7D-CmbaFINu2DXwD2CnDYGZXkc5CO1Zxj9OBDghPFZw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newer\":\"password1\",\r\n    \"elder\":\"password\"   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/updatePassword?member_id=21",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"updatePassword"
+							],
+							"query": [
+								{
+									"key": "member_id",
+									"value": "21"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteMember",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"\r",
+									"요청 \r",
+									"http://3.39.180.45:56178/DBtest/deleteMember?member_id={memberId}\r",
+									"데이터베이스에 저장된 회원 번호 사용\r",
+									"\r",
+									"\r",
+									"응답\r",
+									"\r",
+									"성공\r",
+									"delete suc\r",
+									"\r",
+									"실패\r",
+									"delete fail\r",
+									"\r",
+									"로그인 문제\r",
+									"fail\r",
+									"\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0NzIwNTgsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.cnMm9bIRNbsE2IZ3yyqbuSA6fC-UPmS4Gw77lfysW9X7D-CmbaFINu2DXwD2CnDYGZXkc5CO1Zxj9OBDghPFZw",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/deleteMember?member_id=2",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"deleteMember"
+							],
+							"query": [
+								{
+									"key": "member_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CheckExistId",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"요청 http://3.39.180.45:56178/DBtest/checkExistId?id={유저 아이다}\r",
+									"\r",
+									"아이디 중복확인용 api\r",
+									"\r",
+									"중복아이디 존재시 \r",
+									"false\r",
+									"\r",
+									"없으면 \r",
+									"true\r",
+									"\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/checkExistId?id=Id223",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"checkExistId"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "Id223"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2.profile",
+			"item": [
+				{
+					"name": "FindProfile",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/**\r",
+									" * 헤더에 삽입된 토큰을 해석하여 프로필 데이터 반환\r",
+									" * 헤더에 Authorization 토큰 삽입 필요 \r",
+									" * \r",
+									" * 정상 응답 \r",
+									" * 프로필 정보 반환\r",
+									" * 해당 정보로 프로필 조회 요청하기\r",
+									" * {\r",
+									"    \"profile_id\": 2,\r",
+									"    \"stub_reputation\": 0,\r",
+									"    \"stub_reached\": 0,\r",
+									"    \"about\": \"hello world\",\r",
+									"    \"sign_in_date\": \"2022-09-02T06:41:01.595978Z\",\r",
+									"    \"last_visit\": \"2022-09-02T06:41:01.595996Z\",\r",
+									"    \"location\": \"location\",\r",
+									"    \"displayname\": \"nickname6283\",\r",
+									"    \"answers\": 100\r",
+									"}\r",
+									"\r",
+									"토큰 누락등 잘못된 요청\r",
+									"500 에러\r",
+									" * \r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0NzMzODYsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.nUEkSpW30hGv521re7jicYNUBR64qKLThVnDgli2GP_ZLdRsKsHI1rmG4mOpq_1OimxKQpWMKavA4FPg-gcpug",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/getProfile",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"getProfile"
+							],
+							"query": [
+								{
+									"key": "member_id",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProfile",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/**\r",
+									" * 요청 \r",
+									" * http://3.39.180.45:56178/DBtest/updateProfile?profile_id={profileId}\r",
+									" * 데이터베이스에 저장된 프로필 번호 이용\r",
+									" * \r",
+									" * -추후 토큰을 이용하여 보안 및 요청 uri 변경 예정\r",
+									" * \r",
+									" * 응답\r",
+									" * \r",
+									" * 정상적으로 내용 변경\r",
+									" * \r",
+									" * {\r",
+									"    \"profile_id\": 2,\r",
+									"    \"stub_reputation\": 0,\r",
+									"    \"stub_reached\": 0,\r",
+									"    \"about\": \"update about\",\r",
+									"    \"sign_in_date\": \"2022-09-02T06:41:01.595978Z\",\r",
+									"    \"last_visit\": \"2022-09-02T06:41:01.595996Z\",\r",
+									"    \"location\": \"update location\",\r",
+									"    \"displayname\": \"updateNickName\",\r",
+									"    \"answers\": 100\r",
+									"}\r",
+									"\r",
+									"잘못된 요청 \r",
+									"\r",
+									"500 에러\r",
+									"\r",
+									" 1번 프로필(deleted) 접근시 \r",
+									"\r",
+									" you tried to access deleted user \r",
+									" * \r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0MjIwMDAsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.M-m9Y5tH7tKF79rsF_zn6_fMCs-54jujTQgtZfowLnIH65W41HPcHv9KOTRY0OvapAwI5tJvY4OWqAyppQXBBg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"about\":\"update about\",\r\n    \"location\":\"update location\",\r\n    \"displayname\":\"updateNickName\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/updateProfile?profile_id=2",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"updateProfile"
+							],
+							"query": [
+								{
+									"key": "profile_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3.post",
+			"item": [
+				{
+					"name": "createPost",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"요청 \r",
+									"\r",
+									"http://3.39.180.45:56178/DBtest/post\r",
+									"\r",
+									"-추후에 토큰 적용하여 보안 강화 및 uri 변경 예정\r",
+									"\r",
+									"{ \r",
+									"    \"post_name\":\"post_name_post_man1\", - 포스트 이름\r",
+									"    \"post_content\":\"post_content_post_man1\", - 포스트 내용\r",
+									"    \"member_id\":\"2\", - 유저 번호\r",
+									"    \"tags\":[\"java\",\"java2\" ]   - 태그 목록 맵핑    \r",
+									"}\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0NzU5MjgsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.DbccxCMEyfGL3GjFkHv6tGHZmloa6AGxgGGv8TCwXzCOVX6FADDjhgpEK5m0d0R-XldjnZWVgw68ZBd9D8-grQ",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post_name\":\"post_name_post_man1\",\r\n    \"post_content\":\"post_content_post_man1\",\r\n    \"member_id\":\"2\",\r\n    \"tags\":[\"java\",\"java2\" ]   \r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/post",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"post"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "11",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePost",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/**\r",
+									" * \r",
+									" * 요청 \r",
+									" * \r",
+									" * http://3.39.180.45:56178/DBtest/update/{postId}\r",
+									" * 데이터베이스에 저장된 질문글 번호 이용\r",
+									" * \r",
+									" * 추후 토큰 적용 및 uri 변경 예정 \r",
+									" *\r",
+									" * \r",
+									" * 응답 \r",
+									" * \r",
+									" * 변경 완료\r",
+									" {\r",
+									"    \"post\": {\r",
+									"        \"post_id\": 1,\r",
+									"        \"post_name\": \"updated_post_name_post_man1\",\r",
+									"        \"post_content\": \"updated_post_content_post_man1\",\r",
+									"        \"view_count\": 1,\r",
+									"        \"is_answered\": false,\r",
+									"        \"score\": 0,\r",
+									"        \"write_date\": \"2022-09-03T13:25:06.464625+09:00\",\r",
+									"        \"modified_date\": \"2022-09-03T13:25:11.3876292+09:00\",\r",
+									"        \"comments\": [],\r",
+									"        \"answers\": []\r",
+									"    },\r",
+									"    \"tags\": [\r",
+									"        \"java1\",\r",
+									"        \"java2\"\r",
+									"    ]\r",
+									"}\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0NzY5ODMsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.dpfQIBsXnMI1L8XThSOKFx5u13PnwjJhD-YbMpRsXYzrAJWnqgeXDqqPDYlLHEOm4_P3bVvGkV9lUVgsKMy67g",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post_name\":\"updated_post_name_post_man1\",\r\n    \"post_content\":\"updated_post_content_post_man1\",\r\n    \"member_id\":\"2\",\r\n    \"tags\":[\"java1\",\"java2\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/update/1",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletePost",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/**\r",
+									" * 요청 http://3.39.180.45:56178/DBtest/delete/{postId}\r",
+									" * \r",
+									" * 데이터베이스에 저장된 질문글 번호 이용\r",
+									" * \r",
+									" * 정상 응답\r",
+									" * post deleted\r",
+									" * \r",
+									" * 삭제된 질문글이나 존재하지 않는 질문 번호 요청\r",
+									" * \r",
+									" * you tired to delete not existing post\r",
+									" * \r",
+									" * \r",
+									" * \r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0NzczNzQsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.NNv5tPSP-Pzh4natFQI2SwwTErbHNJrKM8-srK8-yeCt7en46bGF28ZU6pKwiKWAKCtmDD5PqcTSRQgSWEdTYQ",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/DBtest/delete/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"DBtest",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findPostsByMemberId",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/**\r",
+									" * 요청 \r",
+									" * http://3.39.180.45:56178/DBtest/findPost/{memberId}?page={page}&size={size}\r",
+									" * \r",
+									" * 데이터베이스에 저장된 멤버 번호 이용\r",
+									" * page는 응답 작성글 목록 페이지 - 1번부터 시작\r",
+									" * size는 응답 작성글 목록 수 - -2입력시 전체 목록 리턴\r",
+									" * \r",
+									" {\r",
+									"    \"posts\": [\r",
+									"        {\r",
+									"            \"post_id\": 6,\r",
+									"            \"post_name\": \"post_name6\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [\r",
+									"                \"java\",\r",
+									"                \"java1\",\r",
+									"                \"java2\",\r",
+									"                \"java3\",\r",
+									"                \"java4\",\r",
+									"                \"java5\",\r",
+									"                \"java6\"\r",
+									"            ],\r",
+									"            \"writer\": {\r",
+									"                \"member_id\": 2,\r",
+									"                \"nick_name\": \"nickname7602\",\r",
+									"                \"profile_id\": 2\r",
+									"            },\r",
+									"            \"date\": \"2022-09-03T04:28:38.995042Z\",\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 5,\r",
+									"            \"post_name\": \"post_name5\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [\r",
+									"                \"java\",\r",
+									"                \"java1\",\r",
+									"                \"java2\",\r",
+									"                \"java3\",\r",
+									"                \"java4\",\r",
+									"                \"java5\",\r",
+									"                \"java6\"\r",
+									"            ],\r",
+									"            \"writer\": {\r",
+									"                \"member_id\": 2,\r",
+									"                \"nick_name\": \"nickname7602\",\r",
+									"                \"profile_id\": 2\r",
+									"            },\r",
+									"            \"date\": \"2022-09-03T04:28:38.487886Z\",\r",
+									"            \"answered\": false\r",
+									"        }\r",
+									"    ],\r",
+									"    \"questions\": 6,\r",
+									"    \"size\": 2,\r",
+									"    \"sort_by\": \"post_id\",\r",
+									"    \"total_pages\": 3,\r",
+									"    \"page_number\": 1\r",
+									"}\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/findPost/2?page=1&size=2",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"findPost",
+								"2"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllPostsSortedPostId",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/**\r",
+									" * http://3.39.180.45:56178/DBtest/findAllPost?page={page}&size={size}\r",
+									" * \r",
+									" * 서버에 작성된 전체 질문글 확인 가능\r",
+									" * \r",
+									" * size에 -2 사용시 전체 목록 반환\r",
+									" * page 1부터 시작\r",
+									" * \r",
+									" {\r",
+									"    \"posts\": [\r",
+									"        {\r",
+									"            \"post_id\": 6,\r",
+									"            \"post_name\": \"post_name6\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [\r",
+									"                \"java\",\r",
+									"                \"java1\",\r",
+									"                \"java2\",\r",
+									"                \"java3\",\r",
+									"                \"java4\",\r",
+									"                \"java5\",\r",
+									"                \"java6\"\r",
+									"            ],\r",
+									"            \"writer\": {\r",
+									"                \"member_id\": 2,\r",
+									"                \"nick_name\": \"nickname7602\",\r",
+									"                \"profile_id\": 2\r",
+									"            },\r",
+									"            \"date\": \"2022-09-03T04:28:38.995042Z\",\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 5,\r",
+									"            \"post_name\": \"post_name5\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [\r",
+									"                \"java\",\r",
+									"                \"java1\",\r",
+									"                \"java2\",\r",
+									"                \"java3\",\r",
+									"                \"java4\",\r",
+									"                \"java5\",\r",
+									"                \"java6\"\r",
+									"            ],\r",
+									"            \"writer\": {\r",
+									"                \"member_id\": 2,\r",
+									"                \"nick_name\": \"nickname7602\",\r",
+									"                \"profile_id\": 2\r",
+									"            },\r",
+									"            \"date\": \"2022-09-03T04:28:38.487886Z\",\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 4,\r",
+									"            \"post_name\": \"post_name4\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [\r",
+									"                \"java\",\r",
+									"                \"java1\",\r",
+									"                \"java2\",\r",
+									"                \"java3\",\r",
+									"                \"java4\",\r",
+									"                \"java5\",\r",
+									"                \"java6\"\r",
+									"            ],\r",
+									"            \"writer\": {\r",
+									"                \"member_id\": 2,\r",
+									"                \"nick_name\": \"nickname7602\",\r",
+									"                \"profile_id\": 2\r",
+									"            },\r",
+									"            \"date\": \"2022-09-03T04:28:37.987517Z\",\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 3,\r",
+									"            \"post_name\": \"post_name3\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [\r",
+									"                \"java\",\r",
+									"                \"java1\",\r",
+									"                \"java2\",\r",
+									"                \"java3\",\r",
+									"                \"java4\",\r",
+									"                \"java5\",\r",
+									"                \"java6\"\r",
+									"            ],\r",
+									"            \"writer\": {\r",
+									"                \"member_id\": 2,\r",
+									"                \"nick_name\": \"nickname7602\",\r",
+									"                \"profile_id\": 2\r",
+									"            },\r",
+									"            \"date\": \"2022-09-03T04:28:37.383649Z\",\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 2,\r",
+									"            \"post_name\": \"post_name2\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [\r",
+									"                \"java\",\r",
+									"                \"java1\",\r",
+									"                \"java2\",\r",
+									"                \"java3\",\r",
+									"                \"java4\",\r",
+									"                \"java5\",\r",
+									"                \"java6\"\r",
+									"            ],\r",
+									"            \"writer\": {\r",
+									"                \"member_id\": 2,\r",
+									"                \"nick_name\": \"nickname7602\",\r",
+									"                \"profile_id\": 2\r",
+									"            },\r",
+									"            \"date\": \"2022-09-03T04:28:36.890388Z\",\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 1,\r",
+									"            \"post_name\": \"updated_post_name_post_man1\",\r",
+									"            \"post_content\": \"updated_post_content_post_man1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [\r",
+									"                \"java1\",\r",
+									"                \"java2\"\r",
+									"            ],\r",
+									"            \"writer\": {\r",
+									"                \"member_id\": 2,\r",
+									"                \"nick_name\": \"nickname7602\",\r",
+									"                \"profile_id\": 2\r",
+									"            },\r",
+									"            \"date\": \"2022-09-03T04:28:37.688757Z\",\r",
+									"            \"answered\": false\r",
+									"        }\r",
+									"    ],\r",
+									"    \"questions\": 6,\r",
+									"    \"size\": -2,\r",
+									"    \"sort_by\": \"post_id\",\r",
+									"    \"total_pages\": 1,\r",
+									"    \"page_number\": 1\r",
+									"}\r",
+									" * \r",
+									" * 잘못된 페이지, 사이즈 사용시 \r",
+									" \r",
+									" * 500 에러\r",
+									" * \r",
+									" * \r",
+									" * \r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOjEsImV4cCI6MTY1ODk4MTQ0NSwidXNlcm5hbWUiOiJ0ZXN0In0.Rw1ppfE2pMJufQDnmMdtxyyLOOvUENutDrUwXJxTp5RIIEWIn1nA1Xu6RcP2FTMd1_LAME5bxHiZMsBsDtHj8Q",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/findAllPost?page=1&size=15",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"findAllPost"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPost",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/**\r",
+									" * \r",
+									" * http://3.39.180.45:56178/DBtest/getPost?post_id={postId}\r",
+									" * \r",
+									" * 데이터베이스에 저장된 질문글 번호 이용\r",
+									" * 해당 포스트의 정보, 댓글 + 포스트에 작성된 답글 , 해당 답글의 댓글\r",
+									" * \r",
+									" * \r",
+									"{\r",
+									"    \"post\": {\r",
+									"        \"post_id\": 1,\r",
+									"        \"post_name\": \"post_name1\",\r",
+									"        \"post_content\": \"post_content1\",\r",
+									"        \"view_count\": 2,\r",
+									"        \"score\": 0,\r",
+									"        \"tags\": [\r",
+									"            \"java\",\r",
+									"            \"java1\",\r",
+									"            \"java2\",\r",
+									"            \"java3\",\r",
+									"            \"java4\",\r",
+									"            \"java5\",\r",
+									"            \"java6\"\r",
+									"        ],\r",
+									"        \"writer\": {\r",
+									"            \"member_id\": 2,\r",
+									"            \"nick_name\": \"nickname8416\",\r",
+									"            \"profile_id\": 2\r",
+									"        },\r",
+									"        \"write_date\": \"2022-09-03T21:12:50.799982+09:00\",\r",
+									"        \"modified_date\": \"2022-09-03T21:12:50.799982+09:00\",\r",
+									"        \"answers\": [\r",
+									"            {\r",
+									"                \"answer_id\": 1,\r",
+									"                \"answer_content\": \"answer for question 1\",\r",
+									"                \"write_date\": \"2022-09-03T21:12:51.049951+09:00\",\r",
+									"                \"modified_date\": \"2022-09-03T21:12:51.049951+09:00\",\r",
+									"                \"score\": 0,\r",
+									"                \"answer_comments\": [\r",
+									"                    {\r",
+									"                        \"comment_id\": 1,\r",
+									"                        \"content\": \"1. comment for answerId 1\",\r",
+									"                        \"create_date\": \"2022-09-03T21:12:51.131502\",\r",
+									"                        \"modified_date\": \"2022-09-03T21:12:51.131502\",\r",
+									"                        \"writer\": {\r",
+									"                            \"member_id\": 2,\r",
+									"                            \"nick_name\": \"nickname8416\",\r",
+									"                            \"profile_id\": 2\r",
+									"                        },\r",
+									"                        \"update\": false\r",
+									"                    },\r",
+									"                    {\r",
+									"                        \"comment_id\": 2,\r",
+									"                        \"content\": \"2. comment for answerId 1\",\r",
+									"                        \"create_date\": \"2022-09-03T21:12:51.140499\",\r",
+									"                        \"modified_date\": \"2022-09-03T21:12:51.140499\",\r",
+									"                        \"writer\": {\r",
+									"                            \"member_id\": 2,\r",
+									"                            \"nick_name\": \"nickname8416\",\r",
+									"                            \"profile_id\": 2\r",
+									"                        },\r",
+									"                        \"update\": false\r",
+									"                    }\r",
+									"                ],\r",
+									"                \"member\": {\r",
+									"                    \"member_id\": 2,\r",
+									"                    \"nick_name\": \"nickname8416\",\r",
+									"                    \"profile_id\": 2\r",
+									"                }\r",
+									"            }\r",
+									"        ],\r",
+									"        \"comments\": [\r",
+									"            {\r",
+									"                \"comment_id\": 7,\r",
+									"                \"content\": \"1. comment for postId 1\",\r",
+									"                \"create_date\": \"2022-09-03T21:12:51.190071\",\r",
+									"                \"modified_date\": \"2022-09-03T21:12:51.190071\",\r",
+									"                \"writer\": {\r",
+									"                    \"member_id\": 2,\r",
+									"                    \"nick_name\": \"nickname8416\",\r",
+									"                    \"profile_id\": 2\r",
+									"                },\r",
+									"                \"update\": false\r",
+									"            },\r",
+									"            {\r",
+									"                \"comment_id\": 8,\r",
+									"                \"content\": \"2. comment for postId 1\",\r",
+									"                \"create_date\": \"2022-09-03T21:12:51.198071\",\r",
+									"                \"modified_date\": \"2022-09-03T21:12:51.198071\",\r",
+									"                \"writer\": {\r",
+									"                    \"member_id\": 2,\r",
+									"                    \"nick_name\": \"nickname8416\",\r",
+									"                    \"profile_id\": 2\r",
+									"                },\r",
+									"                \"update\": false\r",
+									"            }\r",
+									"        ],\r",
+									"        \"answered\": false\r",
+									"    },\r",
+									"    \"profile\": {\r",
+									"        \"profile_id\": 2,\r",
+									"        \"displayname\": \"nickname8416\"\r",
+									"    }\r",
+									"}\r",
+									" * \r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/getPost?post_id=1",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"getPost"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4.answer",
+			"item": [
+				{
+					"name": "CreateAnswer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/**\r",
+									" * 요청\r",
+									" * http://3.39.180.45:56178/DBtest/createAnswer/\r",
+									" * \r",
+									" *  \r",
+									" * {\r",
+									"    \"post_id\":\"6\",\r",
+									"    \"member_id\" : \"2\",\r",
+									"    \"content\" : \"1번 답변에 대한 댓글입니다.\"\r",
+									" * }\r",
+									" *  \r",
+									" *  토큰 적용 예정\r",
+									" * \r",
+									" * \r",
+									" * 응답\r",
+									" * \r",
+									" * {\r",
+									"    \"answer_id\": 5,\r",
+									"    \"content\": \"1번 답변에 대한 댓글입니다.\",\r",
+									"    \"create_date\": \"2022-09-02T16:39:45.4167638\",\r",
+									"    \"modified_date\": \"2022-09-02T16:39:45.4167638\",\r",
+									"    \"member_id\": 2,\r",
+									"    \"id\": \"Iddddddd1\",\r",
+									"    \"accepted\": false\r",
+									"}\r",
+									" *\r",
+									"  \r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0Nzg2NTksInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.2_Qif7kfiO6AqTdUsYmd_x_jFU30WTZxec_m1Cn0IaUDDVUlY0vGttgTfgUREkAdhmcmKanbIenDpN_VyXi0rw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post_id\":\"1\",\r\n    \"member_id\" : \"2\",\r\n    \"content\" : \"1번 답변에 대한 댓글입니다.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/DBtest/createAnswer/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"DBtest",
+								"createAnswer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAnswer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/**\r",
+									" * 요청\r",
+									" * http://3.39.180.45:56178/DBtest/updateAnswer/{answerId}\r",
+									" * 데이터베이스에 저장된 answer 번호 이용\r",
+									" * \r",
+									" * {\r",
+									"    \"post_id\":\"6\",\r",
+									"    \"member_id\" : \"2\",\r",
+									"    \"content\" : \"6번 답변에 대한 댓글입니다.\"\r",
+									"}\r",
+									" * \r",
+									" * \r",
+									" * 응답\r",
+									" * \r",
+									" * {\r",
+									"    \"answer_id\": 1,\r",
+									"    \"content\": \"6번 답변에 대한 댓글입니다.\",\r",
+									"    \"create_date\": \"2022-09-02T06:41:04.983844\",\r",
+									"    \"modified_date\": \"2022-09-02T07:38:18.287712\",\r",
+									"    \"member_id\": 2,\r",
+									"    \"id\": \"Iddddddd1\",\r",
+									"    \"accepted\": false\r",
+									"}\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0MjIwMDAsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.M-m9Y5tH7tKF79rsF_zn6_fMCs-54jujTQgtZfowLnIH65W41HPcHv9KOTRY0OvapAwI5tJvY4OWqAyppQXBBg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post_id\":\"6\",\r\n    \"member_id\" : \"2\",\r\n    \"content\" : \"6번 답변에 대한 댓글입니다.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/updateAnswer/1",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"updateAnswer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAnswersByPostId",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"요청 \r",
+									"\r",
+									"http://3.39.180.45:56178/DBtest/findAnswers/1?page={page}&size={size}\r",
+									"페이지 1번 부터 시작\r",
+									"\r",
+									"\r",
+									"\r",
+									"응답\r",
+									"\r",
+									"{\r",
+									"    \"data\": [\r",
+									"        {\r",
+									"            \"answer_id\": 1,\r",
+									"            \"content\": \"6번 답변에 대한 댓글입니다.\",\r",
+									"            \"create_date\": \"2022-09-02T06:41:04.983844\",\r",
+									"            \"modified_date\": \"2022-09-02T07:38:18.287712\",\r",
+									"            \"member_id\": 2,\r",
+									"            \"id\": null,\r",
+									"            \"accepted\": false\r",
+									"        }\r",
+									"    ],\r",
+									"    \"page_info\": {\r",
+									"        \"page\": 1,\r",
+									"        \"size\": 30,\r",
+									"        \"total_elements\": 1,\r",
+									"        \"total_pages\": 1\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/findAnswers/1?page=1&size=15",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"findAnswers",
+								"1"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAnswer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"요청 \r",
+									"http://3.39.180.45:56178/DBtest/deleteAnswer/{answerId}\r",
+									"\r",
+									"데이터베이스에 저장된 답변 번호 이용\r",
+									"\r",
+									"채택된 답변일시 해당 질문글의 채택여부를 자동으로 갱신한다\r",
+									"\r",
+									"응답\r",
+									"\r",
+									"{\r",
+									"    \"result\":\"true\"\r",
+									"}\r",
+									"\r",
+									"잘못된 요청, 삭제 실패\r",
+									"\r",
+									"{\r",
+									"    \"result\":\"false\"\r",
+									"}\r",
+									"\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0NzczNzQsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.NNv5tPSP-Pzh4natFQI2SwwTErbHNJrKM8-srK8-yeCt7en46bGF28ZU6pKwiKWAKCtmDD5PqcTSRQgSWEdTYQ",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/DBtest/deleteAnswer/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"DBtest",
+								"deleteAnswer",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAnswersByMemberId",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"\r",
+									"요청\r",
+									"\r",
+									"http://3.39.180.45:56178/DBtest/findAnswersBymember/{memberId}?page={page}&size={size}\r",
+									"데이터베이스에 저장된 memberId 이용\r",
+									"\r",
+									"응답\r",
+									"\r",
+									"{\r",
+									"    \"page_info\": {\r",
+									"        \"page\": 1,\r",
+									"        \"size\": 15,\r",
+									"        \"total_elements\": 4,\r",
+									"        \"total_pages\": 1\r",
+									"    },\r",
+									"    \"answers\": [\r",
+									"        {\r",
+									"            \"answer_id\": 4,\r",
+									"            \"answer_content\": \"answer 2 for question 2\",\r",
+									"            \"write_date\": \"2022-09-03T15:34:08.257243+09:00\",\r",
+									"            \"modified_date\": \"2022-09-03T15:34:08.257243+09:00\",\r",
+									"            \"score\": 0,\r",
+									"            \"comments\": [],\r",
+									"            \"member\": {\r",
+									"                \"member_id\": 2,\r",
+									"                \"nick_name\": \"nickname6147\",\r",
+									"                \"profile_id\": null\r",
+									"            },\r",
+									"            \"post_id\": 2,\r",
+									"            \"accepted\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"answer_id\": 3,\r",
+									"            \"answer_content\": \"answer for question 3\",\r",
+									"            \"write_date\": \"2022-09-03T15:34:08.241615+09:00\",\r",
+									"            \"modified_date\": \"2022-09-03T15:34:08.241615+09:00\",\r",
+									"            \"score\": 0,\r",
+									"            \"comments\": [],\r",
+									"            \"member\": {\r",
+									"                \"member_id\": 2,\r",
+									"                \"nick_name\": \"nickname6147\",\r",
+									"                \"profile_id\": null\r",
+									"            },\r",
+									"            \"post_id\": 3,\r",
+									"            \"accepted\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"answer_id\": 2,\r",
+									"            \"answer_content\": \"answer for question 2\",\r",
+									"            \"write_date\": \"2022-09-03T15:34:08.241615+09:00\",\r",
+									"            \"modified_date\": \"2022-09-03T15:34:08.241615+09:00\",\r",
+									"            \"score\": 0,\r",
+									"            \"comments\": [],\r",
+									"            \"member\": {\r",
+									"                \"member_id\": 2,\r",
+									"                \"nick_name\": \"nickname6147\",\r",
+									"                \"profile_id\": null\r",
+									"            },\r",
+									"            \"post_id\": 2,\r",
+									"            \"accepted\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"answer_id\": 1,\r",
+									"            \"answer_content\": \"answer for question 1\",\r",
+									"            \"write_date\": \"2022-09-03T15:34:08.210365+09:00\",\r",
+									"            \"modified_date\": \"2022-09-03T15:34:08.210365+09:00\",\r",
+									"            \"score\": 0,\r",
+									"            \"comments\": [],\r",
+									"            \"member\": {\r",
+									"                \"member_id\": 2,\r",
+									"                \"nick_name\": \"nickname6147\",\r",
+									"                \"profile_id\": null\r",
+									"            },\r",
+									"            \"post_id\": 1,\r",
+									"            \"accepted\": false\r",
+									"        }\r",
+									"    ]\r",
+									"}\r",
+									"\r",
+									"잘못된 요청\r",
+									"\r",
+									"wrong member\r",
+									"\r",
+									"500에러\r",
+									"\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/findAnswersBymember/2?page=1&size=15",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"findAnswersBymember",
+								"2"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "selectAnswer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"\r",
+									"권한 부여 예정\r",
+									"\r",
+									"요청 \r",
+									"http://3.39.180.45:56178/DBtest/answerSelect?post_id={postId}&answer_id={answerId}\r",
+									"질문글 조회시 응답받은 postId, answerId 이용하기\r",
+									"\r",
+									"해당 글에 채택된 답변이 있을 경우 자동으로 채택이 해제되고 새로 요청한 답변 채택이 적용된다\r",
+									"ex) postId =1 인 질문글에 answerId =1 이 채택이 되어있는 상태에서 다시 postId =1, answerId=2로 요청 발생시 기존 채택 정보가 지워지고\r",
+									"새로운 요청이 처리된다(answerId =1 의 accepted = false, answerId=2 의 accepted = true로 업데이트 된다)\r",
+									"\r",
+									"해당 질문글에도 채택 여부가 자동으로 반여된다\r",
+									"\r",
+									"채택된 answerId에 다시 한번 요청을 보낼시 채택이 취소 된다\r",
+									"ex) postId =1 인 질문글에 answerId =1 이 채택이 되어있는 상태에서 다시 postId =1, answerId=1로 요청 발생시 기존 채택 정보가 지워진다\r",
+									"\r",
+									"정상 응답 \r",
+									"\r",
+									"true\r",
+									"\r",
+									"에러 발생 - 해당 post와 answer가 관계가 없을때, 잘못된 파라미터로 요청\r",
+									"\r",
+									"false\r",
+									"\r",
+									"\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0Mjk2NTgsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.CPRmptM40ui3YCE121w-o2MV577bZaozHFdVqhuy3QDKxrNBFNXy-mMP2ssVrwKxhxOHFdo832ufu05FZcDqsA",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/DBtest/answerSelect?post_id=1&answer_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"DBtest",
+								"answerSelect"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "1"
+								},
+								{
+									"key": "answer_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5.post_vote",
+			"item": [
+				{
+					"name": "postVote",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"헤더에 토큰 삽입 필요 - 로그인한 유저 정보와 요청이 다를경우 에러 발생 \r",
+									"\r",
+									"http://3.39.180.45:56178/DBtest/post_vote?vote={voteScore}&member_id={memberId}&post_id={postId}\r",
+									"데이터베이스에 저장된 멤버 번호, 질문글 번호 이용\r",
+									"\r",
+									"voteScore \r",
+									"\r",
+									"+1\r",
+									"-1\r",
+									"\r",
+									"사용 가능\r",
+									"\r",
+									"응답\r",
+									"\r",
+									"create post_vote and subtract score and current vote score = -1\r",
+									"create post_vote and subtract score and current vote score = +1\r",
+									"\r",
+									"vote nothing changed 점수 변화 없음\r",
+									"\r",
+									"subtract score and current vote score = 0 기존 점수 삭제\r",
+									"\r",
+									"add score and current vote score = +1 기존 점수 +1\r",
+									"\r",
+									"subtract score and current vote score = -1 기존점수 -1\r",
+									"\r",
+									"create answer_vote and add score and current vote score = +1 첫 투표\r",
+									"\r",
+									"create answer_vote and add score and current vote score = -1 첫 투표\r",
+									"\r",
+									"\r",
+									"\r",
+									"잘못된 요청 \r",
+									"\r",
+									"500 에러\r",
+									"\r",
+									"\r",
+									"\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0MjU1MDcsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.ySY5VZUlJ39VXI1bfQhGX-KK2OWNG--DT_oZZ7r-sAuL5MjB4KvjpnGii1WYiZJZSPbYKAhVbSPtHPx0CLKF4g",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/post_vote?vote=1&member_id=2&post_id=6",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"post_vote"
+							],
+							"query": [
+								{
+									"key": "vote",
+									"value": "1"
+								},
+								{
+									"key": "member_id",
+									"value": "2"
+								},
+								{
+									"key": "post_id",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6.sign",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"요청\r",
+									"http://3.39.180.45:56178/login\r",
+									"\r",
+									"{\r",
+									"    \"id\":\"Iddddddd1\",\r",
+									"    \"password\":\"password\"\r",
+									"}\r",
+									"\r",
+									"\r",
+									"응답\r",
+									"\r",
+									"{ \"userid\" :\"Iddddddd1\", - 아이디\r",
+									"    \"token\" :\"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9. eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjIxMDYxMTQsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.d9PoulUJbvk2QKEU0M3lgHRWOtMuNIBZpIZDRvsd2hEUWEQHh5UsEpKH0riprEUFRuutyckIdTCLAYChIyUK4w\"} - 토큰\r",
+									"\r",
+									"\r",
+									"잘못된 요청 \r",
+									"\r",
+									"401 에러\r",
+									"\r",
+									"\r",
+									" */\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOjEsImV4cCI6MTY1ODk4MTQ0NSwidXNlcm5hbWUiOiJ0ZXN0In0.Rw1ppfE2pMJufQDnmMdtxyyLOOvUENutDrUwXJxTp5RIIEWIn1nA1Xu6RcP2FTMd1_LAME5bxHiZMsBsDtHj8Q",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"Iddddddd1\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://3.39.180.45:56178/login",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "11",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TokenLogin",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"요청 \r",
+									"\r",
+									"http://3.39.180.45:56178/DBtest/tokenLogin\r",
+									"\r",
+									"\r",
+									"토큰으로 로그인 확인\r",
+									"헤더에 토큰 삽입 필요\r",
+									"\r",
+									"\r",
+									"응답\r",
+									"\r",
+									"활성화된 토큰 and 유효한 토큰\r",
+									"true\r",
+									"\r",
+									"로그아웃된 , 비활성인 토큰\r",
+									"false\r",
+									"\r",
+									"잘못된 요청\r",
+									"400 에러\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjIxMDYyMjEsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.thfAdDPgD4WCueWZ0xS-YoEfVb87ZifUB8W5q0m4hQNlg00kiLBlyLiZtcquJMLMU3AvNXS7QKpMy1o-uuqZHQ",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/tokenLogin",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"tokenLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TokenLogout",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"토큰을 이용 로그아웃\r",
+									"\r",
+									"응답\r",
+									"\r",
+									"true\r",
+									"\r",
+									"실패시\r",
+									"\r",
+									"false\r",
+									"\r",
+									"잘못된 요청\r",
+									"\r",
+									"400 에러\r",
+									"\r",
+									"\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0MjE5NTQsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.mAkeLAt4J10zN_8wZJoz1Kz18fz9bBFUnS5_IMw22anPqVK4UJndLrETkAq0TPwpNtiSnBvnU1mkbzGAmmuhmQ",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/Logout",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"Logout"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RefreshToken",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"토큰 활성화\r",
+									"헤더에 삽입된 토큰 활성화\r",
+									"\r",
+									"응답\r",
+									"\r",
+									"{\"msg\":\"true\"}\r",
+									"\r",
+									"잘못된 요청\r",
+									"\r",
+									"500 에러\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0MjE5NTQsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.mAkeLAt4J10zN_8wZJoz1Kz18fz9bBFUnS5_IMw22anPqVK4UJndLrETkAq0TPwpNtiSnBvnU1mkbzGAmmuhmQ",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/refreshToken",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"refreshToken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7.comment",
+			"item": [
+				{
+					"name": "CreateCommentAnswer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"요청\r",
+									"http://3.39.180.45:56178/api/comment/answer\r",
+									"\r",
+									"{ \"member_id\":\"2\",\r",
+									"  \"content\":\"comment content\",\r",
+									"   \"answer_id\":\"2\"}\r",
+									"\r",
+									"헤더에 토큰 삽입 필요\r",
+									"\r",
+									"answerId를 해석해서 해당 answer에 댓글을 답니다\r",
+									"로그인 되지 않은 유저 정보에 접근시 에러메세지 출력\r",
+									"정상 작동시 작성한 댓글 정보 응답\r",
+									"\r",
+									"정상 응답\r",
+									"\r",
+									"{\r",
+									"    \"comment_id\": 1,\r",
+									"    \"content\": \"comment content\",\r",
+									"    \"id\": \"Iddddddd1\",\r",
+									"    \"profile_image_link\": null,\r",
+									"    \"create_date\": \"2022-09-02T17:07:30.2303504\"\r",
+									"}\r",
+									"\r",
+									"잘못된 토큰 응답\r",
+									"wrong member info, check login information\r",
+									"혹은\r",
+									"500에러\r",
+									"\r",
+									"\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0MjIwMDAsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.M-m9Y5tH7tKF79rsF_zn6_fMCs-54jujTQgtZfowLnIH65W41HPcHv9KOTRY0OvapAwI5tJvY4OWqAyppQXBBg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"member_id\":\"2\",\r\n  \"content\":\"comment content\",\r\n   \"answer_id\":\"2\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://3.39.180.45:56178/api/comment/answer",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"api",
+								"comment",
+								"answer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCommentPost",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"요청 \r",
+									"http://localhost:8080/api/comment/question\r",
+									"\r",
+									"헤더에 토큰 삽입 필요\r",
+									"\r",
+									"\r",
+									"questionId 해석해서 해당 question에 댓글을 답니다\r",
+									"로그인 되지 않은 유저 정보에 접근시 에러메세지 출력\r",
+									"정상 작동시 작성한 댓글 정보 응답\r",
+									"\r",
+									"정상 응답\r",
+									"\r",
+									"{\r",
+									"    \"comment_id\": 2,\r",
+									"    \"content\": \"comment content\",\r",
+									"    \"id\": \"Iddddddd1\",\r",
+									"    \"profile_image_link\": null,\r",
+									"    \"create_date\": \"2022-09-02T17:09:27.334229\"\r",
+									"}\r",
+									"\r",
+									"잘못된 토큰 응답\r",
+									"wrong member info, check login information\r",
+									"혹은\r",
+									"500에러\r",
+									"\r",
+									"\r",
+									"*/\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0NzY5ODMsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.dpfQIBsXnMI1L8XThSOKFx5u13PnwjJhD-YbMpRsXYzrAJWnqgeXDqqPDYlLHEOm4_P3bVvGkV9lUVgsKMy67g",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"post_id\":\"1\",\r\n  \"content\":\"comment content\",\r\n   \"member_id\":\"2\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://3.39.180.45:56178/api/comment/question",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"api",
+								"comment",
+								"question"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCommentPost",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"요청 \r",
+									"http://3.39.180.45:56178/api/comment/question/{questionId}\r",
+									"questionId를 해석해서 해당 질문글의 댓글을 출력합니다\r",
+									"\r",
+									"정상응답\r",
+									"[\r",
+									"    {\r",
+									"        \"comment_id\": 2,\r",
+									"        \"content\": \"comment content\",\r",
+									"        \"id\": \"Iddddddd1\",\r",
+									"        \"profile_image_link\": null,\r",
+									"        \"create_date\": \"2022-09-02T17:09:27.334229\",\r",
+									"        \"update\": false\r",
+									"    }\r",
+									"]\r",
+									"\r",
+									"잘못된 요청시\r",
+									"500 에러\r",
+									"\r",
+									"\r",
+									"\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://3.39.180.45:56178/api/comment/question/0",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"api",
+								"comment",
+								"question",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCommentAnswer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"요청 \r",
+									"http://3.39.180.45:56178/api/comment/answer/{answerId}\r",
+									"answerId를 해석해서 해당 질문글의 댓글을 출력합니다\r",
+									"\r",
+									"정상응답\r",
+									"[\r",
+									"    {\r",
+									"        \"comment_id\": 2,\r",
+									"        \"content\": \"comment content\",\r",
+									"        \"id\": \"Iddddddd1\",\r",
+									"        \"profile_image_link\": null,\r",
+									"        \"create_date\": \"2022-09-02T17:09:27.334229\",\r",
+									"        \"update\": false\r",
+									"    }\r",
+									"]\r",
+									"\r",
+									"잘못된 요청시\r",
+									"500 에러\r",
+									"\r",
+									"\r",
+									"\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://3.39.180.45:56178/api/comment/answer/2",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"api",
+								"comment",
+								"answer",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteComment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"\r",
+									"헤더에 토큰 삽입 필요\r",
+									"\r",
+									"commentId 해석해서 해당 commentId 삭제합니다\r",
+									"로그인 되지 않은 유저 정보에 접근시 false\r",
+									"존재하지 않는 comment 접근시 false\r",
+									"\r",
+									"정상 작동시 \r",
+									"true\r",
+									"\r",
+									"실패 \r",
+									"false 혹은 500 에러\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0MjMxNDAsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.WWEyN3iGDwWtTQfi4PXJxtWssSRhkFX2zJS75vV_YVuoWBZjGWuJhHf3nA1UgkNIlrkM0_pRna7stXQIDfm3vg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"member_id\":\"2\",\r\n    \"comment_id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://3.39.180.45:56178/api/comment/",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"api",
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "8.answer_vote",
+			"item": [
+				{
+					"name": "answerVote",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"vote 사용할 점수 +1 -1\r",
+									"\r",
+									"memberId 해당하는 member 없거나\r",
+									"answerId 해당하는 answer 없거나\r",
+									"로그인된 memberId 아니면 - 헤더에 토큰 삽입\r",
+									"vote error 응답\r",
+									"\r",
+									"정상 작동 응답 메세지\r",
+									"\r",
+									"create post_vote and subtract score and current vote score = -1\r",
+									"create post_vote and subtract score and current vote score = +1\r",
+									"\r",
+									"vote nothing changed 점수 변화 없음\r",
+									"\r",
+									"subtract score and current vote score = 0 기존 점수 삭제\r",
+									"\r",
+									"add score and current vote score = +1 기존 점수 +1\r",
+									"\r",
+									"subtract score and current vote score = -1 기존점수 -1\r",
+									"\r",
+									"create answer_vote and add score and current vote score = +1 첫 투표\r",
+									"\r",
+									"create answer_vote and add score and current vote score = -1 첫 투표\r",
+									"\r",
+									"\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0MjMxNDAsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.WWEyN3iGDwWtTQfi4PXJxtWssSRhkFX2zJS75vV_YVuoWBZjGWuJhHf3nA1UgkNIlrkM0_pRna7stXQIDfm3vg",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"Iddddddd1\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/answer_vote?vote=+1&member_id=2&answer_id=2",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"answer_vote"
+							],
+							"query": [
+								{
+									"key": "vote",
+									"value": "+1"
+								},
+								{
+									"key": "member_id",
+									"value": "2"
+								},
+								{
+									"key": "answer_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "9.tag",
+			"item": [
+				{
+					"name": "tagfind",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/* \r",
+									"태그 이름을 통해 태그 정보 확인\r",
+									"\r",
+									"정상 응답\r",
+									"\r",
+									"{\r",
+									"    \"id\": 2,\r",
+									"    \"name\": \"java1\",\r",
+									"    \"description\": \"test tag for name is java version 11\"\r",
+									"}\r",
+									"\r",
+									"실패 \r",
+									"\r",
+									"not exists\r",
+									"*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/tagFind?name=jav",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"tagFind"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "jav"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tagFinds",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"모든 태그 배열로 리턴\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/tagFinds",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"tagFinds"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "jav",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "10.profileImg",
+			"item": [
+				{
+					"name": "updateProfileImg",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"\r",
+									"요청\r",
+									"http://3.39.180.45:56178/DBtest/upload\r",
+									"form-data\r",
+									"\r",
+									"요청 body\r",
+									"\r",
+									"key = file\r",
+									"value = 파일 선택(파일경로)\r",
+									"\r",
+									"memberId = 현재 로그인된 유저 번호(프로필 번호도 사용 가능)\r",
+									"\r",
+									"해당하는 member가 존재하면 프로필 이미지를 업로드하고 해당 이미지로 프로필 이미지 정보 변경\r",
+									"\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0NzA4NzcsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.wkq1GeW1YSxHYXX3ajqk4W5ZC9txj8aYb39LTHiNZXYs5aSTVnhS6SvmZJKI03fot3kSgIXUccQmG5jIGTR1jw",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/jjj/Downloads/response.png"
+								},
+								{
+									"key": "memberId",
+									"value": "2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/upload",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProfileImg",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"\r",
+									"요청\r",
+									"http://3.39.180.45:56178/DBtest/download?memberId={memberId}\r",
+									"데이터베이스에 저장된 memberId를 이용(profileId 또한 이용 가능)\r",
+									"\r",
+									"해당하는 유저가 있을 경우 유저의 이미지를 데이터베이스와 서버에서 불러온다\r",
+									"없거나 설정이 되지 않은 경우 default.png를 불러온다\r",
+									"\r",
+									"\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb3Mgand0IHRva2VuIiwiaWQiOiJJZGRkZGRkZDEiLCJleHAiOjE2NjI0Mjg2MDQsInVzZXJuYW1lIjoiSWRkZGRkZGQxIn0.v1UxPKKBteuLI85tLx3wuhTdIlW36wVVlyySkkKtP0-xlUhQ4cXBfeYCGD41ACZsyvuiAhKWIkZCKtxzbIRkpA",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/download?memberId=3",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"download"
+							],
+							"query": [
+								{
+									"key": "memberId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "11.search",
+			"item": [
+				{
+					"name": "search",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"응답 내용 수정 필요 - 기능 테스트 용도\r",
+									"\r",
+									"요청 예시\r",
+									"\r",
+									"http://localhost:8080/DBtest/search?phrase=i need you\r",
+									"\r",
+									"검색어를 띄어쓰기 기준으로 토큰화하여 검색\r",
+									"\r",
+									"예시의 경우\r",
+									"i | need | you\r",
+									"3개의 토큰으로 나누어짐\r",
+									"\r",
+									"연관성(중요도가 높은 단어 포함 기준) 내림 차순으로 결과 응답\r",
+									"\r",
+									"검색어 토큰이 포함되지 않는 글은 응답하지 않음\r",
+									"\r",
+									"정상 응답\r",
+									"5,6,7,8  토큰   i | need 매칭\r",
+									"21,22,23,24 토큰 i 매칭\r",
+									"\r",
+									"{\r",
+									"    \"posts\": [\r",
+									"        {\r",
+									"            \"post_id\": 5,\r",
+									"            \"post_name\": \"i need create java\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [],\r",
+									"            \"writer\": null,\r",
+									"            \"write_date\": null,\r",
+									"            \"modified_date\": null,\r",
+									"            \"answers\": [],\r",
+									"            \"comments\": [],\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 6,\r",
+									"            \"post_name\": \"i need update java\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [],\r",
+									"            \"writer\": null,\r",
+									"            \"write_date\": null,\r",
+									"            \"modified_date\": null,\r",
+									"            \"answers\": [],\r",
+									"            \"comments\": [],\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 7,\r",
+									"            \"post_name\": \"i need read java\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [],\r",
+									"            \"writer\": null,\r",
+									"            \"write_date\": null,\r",
+									"            \"modified_date\": null,\r",
+									"            \"answers\": [],\r",
+									"            \"comments\": [],\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 8,\r",
+									"            \"post_name\": \"i need delete java\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [],\r",
+									"            \"writer\": null,\r",
+									"            \"write_date\": null,\r",
+									"            \"modified_date\": null,\r",
+									"            \"answers\": [],\r",
+									"            \"comments\": [],\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 21,\r",
+									"            \"post_name\": \"how to create git\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [],\r",
+									"            \"writer\": null,\r",
+									"            \"write_date\": null,\r",
+									"            \"modified_date\": null,\r",
+									"            \"answers\": [],\r",
+									"            \"comments\": [],\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 22,\r",
+									"            \"post_name\": \"how to update git\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [],\r",
+									"            \"writer\": null,\r",
+									"            \"write_date\": null,\r",
+									"            \"modified_date\": null,\r",
+									"            \"answers\": [],\r",
+									"            \"comments\": [],\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 23,\r",
+									"            \"post_name\": \"how to read git\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [],\r",
+									"            \"writer\": null,\r",
+									"            \"write_date\": null,\r",
+									"            \"modified_date\": null,\r",
+									"            \"answers\": [],\r",
+									"            \"comments\": [],\r",
+									"            \"answered\": false\r",
+									"        },\r",
+									"        {\r",
+									"            \"post_id\": 24,\r",
+									"            \"post_name\": \"how to delete git\",\r",
+									"            \"post_content\": \"post_content1\",\r",
+									"            \"view_count\": 1,\r",
+									"            \"score\": 0,\r",
+									"            \"tags\": [],\r",
+									"            \"writer\": null,\r",
+									"            \"write_date\": null,\r",
+									"            \"modified_date\": null,\r",
+									"            \"answers\": [],\r",
+									"            \"comments\": [],\r",
+									"            \"answered\": false\r",
+									"        }\r",
+									"    ],\r",
+									"    \"questions\": 8\r",
+									"}\r",
+									"\r",
+									"\r",
+									" */"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://3.39.180.45:56178/DBtest/search?phrase=i need you",
+							"protocol": "http",
+							"host": [
+								"3",
+								"39",
+								"180",
+								"45"
+							],
+							"port": "56178",
+							"path": [
+								"DBtest",
+								"search"
+							],
+							"query": [
+								{
+									"key": "phrase",
+									"value": "i need you"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
