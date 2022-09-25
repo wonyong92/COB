@@ -21,3 +21,4 @@
 + 8월 이전까지 이론 부분 반드시 완성해야함
 
 클론 코딩 - 코드 따라하기 - 아는 만큼 보인다
+https://www.erdcloud.com/d/PK2Ae7d4asTRqHpHx
